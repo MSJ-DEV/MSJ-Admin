@@ -1,0 +1,16 @@
+@import '~mdb-ui-kit/css/mdb.min.css';
+.navbar-nav{
+padding-left: 60% !important;
+}
+.modal {
+    background-image:url("https://images.pexels.com/photos/1005638/pexels-photo-1005638.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940") !important;
+}
+.modal-content{
+    height: 450px;
+}
+.modal-body{
+    justify-content: center;
+    margin-top: 50px;
+    height: 40px;
+    margin-left: 40px;
+}
