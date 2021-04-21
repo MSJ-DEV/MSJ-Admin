@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-// import * as mdb from 'mdb-ui-kit';
-import 'mdb-ui-kit/css/mdb.min.css';
+import axios from 'axios'
 import Products from './products'
 import SignIn from './Signin'
 import Post from './Post'
@@ -13,6 +12,24 @@ import {
 } from "react-router-dom";
 
 export default class Navbar extends Component {
+    constructor(props){
+        super(props)
+        this.state={
+         togle:true
+        }
+        this.checkAdmin=this.checkAdmin.bind(this)
+    }
+    componentDidMount(){
+        this.checkAdmin()
+    }
+    checkAdmin(){
+      if(!!sessionStorage.getItem('checkAdmin')){
+          this.setState({togle:false})
+      }else{
+        this.setState({togle:true})
+      }
+        
+    }
     render() {
         return (
             <Router>
@@ -51,11 +68,11 @@ export default class Navbar extends Component {
                                         Contact
       </a>
                                 </li>
-                                <li className="nav-item pl-2 mb-2 mb-md-0">
+                              {this.state.togle&&  <li className="nav-item pl-2 mb-2 mb-md-0">
                                     <a type="button" className="btn btn-outline-info btn-md btn-rounded btn-navbar waves-effect waves-light">
                                         <Link to="/Signin">Sign in</Link>
                                     </a>
-                                </li>
+                                </li>}
                                 <li className="nav-item pl-2 mb-2 mb-md-0">
                                     <a type="button"
                                         className="btn btn-outline-info btn-md btn-rounded btn-navbar waves-effect waves-light"><Link to="/Signup">Sign Up</Link></a>
