@@ -5,23 +5,58 @@ export default class Post extends Component {
         super(props)
         this.state = {
             imageselected: [],
-            img: {}
+            name: "",
+            information: "",
+            category: "",
+            oldprice: "",
+            newprice: "",
+            type: "",
+            quantity: "",
+            quantityinstock: "",
+            status: "",
+            promotion: "",
+
         }
-        this.uploadImage = this.uploadImage.bind(this)
+        this.handleClick = this.handleClick.bind(this)
     }
-    uploadImage = () => {
-        const { imageselected } = this.state
+    handleChange(e) {
+        this.setState({ [e.target.name]: e.target.value })
+        console.log(
+            { [e.target.name]: e.target.value }
+        )
+    }
+
+
+    async handleClick() {
+        const { imageselected, name, information, category, oldprice, newprice, type, quantity, quantityinstock, status, promotion } = this.state
         const formData = new FormData()
         formData.append("file", imageselected)
         formData.append('upload_preset', 'qczp9fgd')
-        axios.post('https://api.cloudinary.com/v1_1/dm1xlu8ce/image/upload', formData).then((res) => {
-            this.setState({ img: res.data.url })
+        await axios.post('https://api.cloudinary.com/v1_1/dm1xlu8ce/image/upload', formData).then((res) => {
+
+
+            axios.post('http://192.168.22.213:3333/api/poducts', {
+                name: name,
+                information: information,
+                category: category,
+                oldprice: oldprice,
+                newprice: newprice,
+                type: type,
+                quantity: quantity,
+                image: res.data.url,
+                quantityinstock: quantityinstock,
+                status: status,
+                promotion: promotion,
+
+            }).then(res => {
+                console.log(res)
+            })
         })
-        console.log(this.state.img)
     }
+
     render() {
         return (
-             <div className='pop'>
+            <div>
                 <div
                     className="modal fade"
                     id="exampleModal"
@@ -40,38 +75,39 @@ export default class Post extends Component {
                                     aria-label="Close"
                                 ></button>
                             </div>
-                            <div className="modal-body">   
-                                
-                                <input placeholder="name"/> 
+                            <div className="modal-body">
 
-                                <input placeholder="information"/>
+                                <input placeholder="name" onChange={(e) => this.handleChange(e)} name="name" />
 
-                                <input placeholder="category"/>
+                                <input placeholder="information" onChange={(e) => this.handleChange(e)} name="information" />
 
-                                <input placeholder="oldprice"/>
+                                <input placeholder="category" onChange={(e) => this.handleChange(e)} name="category" />
 
-                                <input placeholder="newprice"/>
+                                <input placeholder="oldprice" onChange={(e) => this.handleChange(e)} name="oldprice" />
 
-                                <input placeholder="tyepe"/>
+                                <input placeholder="newprice" onChange={(e) => this.handleChange(e)} name="newprice" />
 
-                                <input placeholder="quantity"/>
+                                <input placeholder="type" onChange={(e) => this.handleChange(e)} name="type" />
 
-                                <input placeholder="quantityinstock"/>
-                                
-                                <input placeholder="status"/>
+                                <input placeholder="quantity" onChange={(e) => this.handleChange(e)} name="quantity" />
 
-                                <input placeholder="promotion"/>
-                                <input type="file" onChange={(event) => this.setState({ imageselected: event.target.files[0] })}/>
-                                </div>
+                                <input placeholder="quantityinstock" onChange={(e) => this.handleChange(e)} name="quantityinstock" />
+
+                                <input placeholder="status" onChange={(e) => this.handleChange(e)} name="status" />
+
+                                <input placeholder="promotion" onChange={(e) => this.handleChange(e)} name="promotion" />
+                                <input type="file" onChange={(event) => this.setState({ imageselected: event.target.files[0] })} />
+                            </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" data-mdb-dismiss="modal">
                                     Close
-        </button>
-                                <button type="button" className="btn btn-primary" onClick={this.uploadImage}>Save changes</button>
+                                  </button>
+                                <button type="submit" className="btn btn-primary" onClick={this.handleClick}>Save changes</button>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         )
     }
