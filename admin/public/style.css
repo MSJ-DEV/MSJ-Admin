@@ -91,9 +91,13 @@ body, html, .App, #root, .auth-wrapper {
 .container1{
   margin-left: 25%;
   padding-left: 2%;
-   padding-top: 1%;
   border: solid ;
   border-radius: 3%; 
   width: 52%;
-  height: 700px;
+ 
+}
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled){
+  background-color: blue;
+  color: white;
+  
 }
