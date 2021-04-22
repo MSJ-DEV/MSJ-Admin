@@ -88,3 +88,12 @@ body, html, .App, #root, .auth-wrapper {
 .forgot-password a {
   color: #167bff;
 }
+.container1{
+  margin-left: 25%;
+  padding-left: 2%;
+   padding-top: 1%;
+  border: solid ;
+  border-radius: 3%; 
+  width: 52%;
+  height: 700px;
+}
