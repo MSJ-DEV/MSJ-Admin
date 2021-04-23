@@ -205,7 +205,7 @@ export default class Navbar extends Component {
                                         <CDropdown inNav>
                                       
                                         <CDropdownToggle caret>
-                                            Foods
+                                        Crocery
                                             
                                          </CDropdownToggle>
                                          <CDropdownMenu>
@@ -221,7 +221,7 @@ export default class Navbar extends Component {
                                                </CDropdown>
                                                <CDropdown inNav>
                                         <CDropdownToggle caret>
-                                        Meat
+                                        Pasta
                                          </CDropdownToggle>
                                                 <CDropdownMenu>
                                                     <CDropdownItem>Beef</CDropdownItem>
@@ -231,7 +231,7 @@ export default class Navbar extends Component {
                                                </CDropdown>
                                                <CDropdown inNav>
                                         <CDropdownToggle caret>
-                                        Meat
+                                        Drink
                                          </CDropdownToggle>
                                                 <CDropdownMenu>
                                                     <CDropdownItem>Beef</CDropdownItem>
@@ -241,7 +241,7 @@ export default class Navbar extends Component {
                                                </CDropdown>
                                                <CDropdown inNav>
                                         <CDropdownToggle caret>
-                                        Meat
+                                        Snaks
                                          </CDropdownToggle>
                                                 <CDropdownMenu>
                                                     <CDropdownItem>Beef</CDropdownItem>
@@ -251,7 +251,8 @@ export default class Navbar extends Component {
                                                </CDropdown>
                                                <CDropdown inNav>
                                         <CDropdownToggle caret>
-                                        Meat
+                                        keep box
+
                                          </CDropdownToggle>
                                                 <CDropdownMenu>
                                                     <CDropdownItem>Beef</CDropdownItem>
