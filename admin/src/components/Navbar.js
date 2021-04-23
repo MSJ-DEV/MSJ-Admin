@@ -114,6 +114,7 @@ import {
     Route,
     Link
 } from "react-router-dom";
+import Update from './Update'
 
 import {
     CRow,
@@ -157,14 +158,11 @@ export default class Navbar extends Component {
                     <CCol xs="2">
                         <img src="https://www.carrefourtunisie.com/medias/sliders/2020-04-08/s6desktop.jpg" height="70" alt="mdb logo" />
                     </CCol>
-                    <CCol xs="6">
+                    <CCol xs="5">
                         <CCard>
                             <CCardBody>
 
                                 <CNav variant="tabs">
-
-
-
                                     <CNavItem>
                                         <CNavLink ><Link to="/Dashbord">Home</Link></CNavLink>
                                     </CNavItem>
@@ -176,40 +174,225 @@ export default class Navbar extends Component {
                                             <CDropdownItem><Link to="/Post">Add Products</Link></CDropdownItem>
                                             <CDropdownItem><Link to="/products">All Products</Link></CDropdownItem>
                                             <CDropdownItem>Something else here</CDropdownItem>
-                                            <CDropdownItem divider />
                                             <CDropdownItem>Separated link</CDropdownItem>
                                         </CDropdownMenu>
                                     </CDropdown>
-                                    <CNavItem>
+                                    {/* <CNavItem>
                                         <CNavLink>Link</CNavLink>
                                     </CNavItem>
                                     <CNavItem>
                                         <CNavLink disabled>Disabled</CNavLink>
-                                    </CNavItem>
+                                    </CNavItem> */}
                                 </CNav>
                             </CCardBody>
                         </CCard>
                     </CCol>
 
-                    <CCol xs="4">
+                    <CCol xs="5">
                         <CCard>
 
                             <CCardBody >
-                                <CNav variant="pills">
-                                    <CNavItem>
-                                        <CNavLink active>Link</CNavLink>
-                                    </CNavItem>
-                                    <CDropdown inNav>
+                                <CNav variant="tabs">
+          
+                                                     <CDropdown inNav>
                                         <CDropdownToggle caret>
-                                            Dropdown
-                  </CDropdownToggle>
+                                            Category
+                                            
+                                         </CDropdownToggle>
+                                        
                                         <CDropdownMenu>
-                                            <CDropdownItem>Action</CDropdownItem>
-                                            <CDropdownItem>Another action</CDropdownItem>
-                                            <CDropdownItem>Something else here</CDropdownItem>
-                                            <CDropdownItem divider />
-                                            <CDropdownItem>Separated link</CDropdownItem>
-                                        </CDropdownMenu>
+                                        
+                                        <CDropdown inNav>
+                                      
+                                        <CDropdownToggle caret>
+                                            Foods
+                                            
+                                         </CDropdownToggle>
+                                         <CDropdownMenu>
+                                        <CDropdown inNav>
+                                        <CDropdownToggle caret>
+                                        Meat
+                                         </CDropdownToggle>
+                                                <CDropdownMenu>
+                                                    <CDropdownItem>Beef</CDropdownItem>
+                                                    <CDropdownItem>Lamb</CDropdownItem>
+                                                    <CDropdownItem>Pork</CDropdownItem>
+                                                </CDropdownMenu>
+                                               </CDropdown>
+                                               <CDropdown inNav>
+                                        <CDropdownToggle caret>
+                                        Meat
+                                         </CDropdownToggle>
+                                                <CDropdownMenu>
+                                                    <CDropdownItem>Beef</CDropdownItem>
+                                                    <CDropdownItem>Lamb</CDropdownItem>
+                                                    <CDropdownItem>Pork</CDropdownItem>
+                                                </CDropdownMenu>
+                                               </CDropdown>
+                                               <CDropdown inNav>
+                                        <CDropdownToggle caret>
+                                        Meat
+                                         </CDropdownToggle>
+                                                <CDropdownMenu>
+                                                    <CDropdownItem>Beef</CDropdownItem>
+                                                    <CDropdownItem>Lamb</CDropdownItem>
+                                                    <CDropdownItem>Pork</CDropdownItem>
+                                                </CDropdownMenu>
+                                               </CDropdown>
+                                               <CDropdown inNav>
+                                        <CDropdownToggle caret>
+                                        Meat
+                                         </CDropdownToggle>
+                                                <CDropdownMenu>
+                                                    <CDropdownItem>Beef</CDropdownItem>
+                                                    <CDropdownItem>Lamb</CDropdownItem>
+                                                    <CDropdownItem>Pork</CDropdownItem>
+                                                </CDropdownMenu>
+                                               </CDropdown>
+                                               <CDropdown inNav>
+                                        <CDropdownToggle caret>
+                                        Meat
+                                         </CDropdownToggle>
+                                                <CDropdownMenu>
+                                                    <CDropdownItem>Beef</CDropdownItem>
+                                                    <CDropdownItem>Lamb</CDropdownItem>
+                                                    <CDropdownItem>Pork</CDropdownItem>
+                                                </CDropdownMenu>
+                                               </CDropdown>
+                                        </CDropdownMenu> 
+                                            </CDropdown>
+                                            <CDropdown inNav>
+                                      
+                                      <CDropdownToggle caret>
+                                      electronic
+                                          
+                                       </CDropdownToggle>
+                                       <CDropdownMenu>
+                                      <CDropdown inNav>
+                                      <CDropdownToggle caret>
+                                                 Computer and device terms
+                                       </CDropdownToggle>
+                                              <CDropdownMenu>
+                                              <CDropdownItem>Laptop</CDropdownItem>
+                                                    <CDropdownItem>TV</CDropdownItem>
+                                                    <CDropdownItem>Phone</CDropdownItem>
+                                                    <CDropdown inNav>
+                                                        <CDropdownToggle caret>
+                                                            Accessory
+                                         </CDropdownToggle>
+                                                        <CDropdownMenu>
+                                                            <CDropdownItem>Mause</CDropdownItem>
+                                                            <CDropdownItem>Keyboard</CDropdownItem>
+                                                            <CDropdownItem>Headphones</CDropdownItem>
+                                                            <CDropdownItem>Cable</CDropdownItem>
+
+                                                        </CDropdownMenu>
+
+                                                    </CDropdown>
+                                              </CDropdownMenu>
+                                             </CDropdown>
+                                      </CDropdownMenu> 
+                                          </CDropdown>
+                                          <CDropdown inNav>
+                                      
+                                      <CDropdownToggle caret>
+                                      Clothes
+                                          
+                                       </CDropdownToggle>
+                                       <CDropdownMenu>
+                                      <CDropdown inNav>
+                                      <CDropdownToggle caret>
+                                                Man
+                                       </CDropdownToggle>
+                                              <CDropdownMenu>
+                                              <CDropdownItem>Laptop</CDropdownItem>
+                                                    <CDropdownItem>TV</CDropdownItem>
+                                                    <CDropdownItem>Phone</CDropdownItem>
+                                              </CDropdownMenu>
+                                             </CDropdown>
+                                             <CDropdown inNav>
+                                      <CDropdownToggle caret>
+                                      Women
+                                       </CDropdownToggle>
+                                              <CDropdownMenu>
+                                              <CDropdownItem>Laptop</CDropdownItem>
+                                                    <CDropdownItem>TV</CDropdownItem>
+                                                    <CDropdownItem>Phone</CDropdownItem>
+                                              </CDropdownMenu>
+                                             </CDropdown>
+                                      </CDropdownMenu> 
+                                          </CDropdown>
+                                          <CDropdown inNav>
+                                      
+                                      <CDropdownToggle caret>
+                                      makeup
+                                          
+                                       </CDropdownToggle>
+                                              <CDropdownMenu>
+                                              <CDropdownItem>Laptop</CDropdownItem>
+                                                    <CDropdownItem>TV</CDropdownItem>
+                                                    <CDropdownItem>Phone</CDropdownItem>
+                                              </CDropdownMenu>      
+                                          </CDropdown>
+                                          <CDropdown inNav>
+                                      
+                                      <CDropdownToggle caret>
+                                      Parfums
+                                       </CDropdownToggle>
+                                       <CDropdownMenu>
+                                      <CDropdown inNav>
+                                      <CDropdownToggle caret>
+                                                Man
+                                       </CDropdownToggle>
+                                              <CDropdownMenu>
+                                              <CDropdownItem>Laptop</CDropdownItem>
+                                                    <CDropdownItem>TV</CDropdownItem>
+                                                    <CDropdownItem>Phone</CDropdownItem>
+                                              </CDropdownMenu>
+                                             </CDropdown>
+                                             <CDropdown inNav>
+                                      <CDropdownToggle caret>
+                                      Women
+                                       </CDropdownToggle>
+                                              <CDropdownMenu>
+                                              <CDropdownItem>Laptop</CDropdownItem>
+                                                    <CDropdownItem>TV</CDropdownItem>
+                                                    <CDropdownItem>Phone</CDropdownItem>
+                                              </CDropdownMenu>
+                                             </CDropdown>
+                                      </CDropdownMenu> 
+                                          </CDropdown>
+                                          <CDropdown inNav>
+                                      
+                                      <CDropdownToggle caret>
+                                      Fuits and Vegitables
+                                       </CDropdownToggle>
+                                       <CDropdownMenu>
+                                      <CDropdown inNav>
+                                      <CDropdownToggle caret>
+                                      Fuits
+                                       </CDropdownToggle>
+                                              <CDropdownMenu>
+                                              <CDropdownItem>Laptop</CDropdownItem>
+                                                    <CDropdownItem>TV</CDropdownItem>
+                                                    <CDropdownItem>Phone</CDropdownItem>
+                                              </CDropdownMenu>
+                                             </CDropdown>
+                                             <CDropdown inNav>
+                                      <CDropdownToggle caret>
+                                      Vegitables
+                                       </CDropdownToggle>
+                                              <CDropdownMenu>
+                                              <CDropdownItem>Laptop</CDropdownItem>
+                                                    <CDropdownItem>TV</CDropdownItem>
+                                                    <CDropdownItem>Phone</CDropdownItem>
+                                              </CDropdownMenu>
+                                             </CDropdown>
+                                      </CDropdownMenu> 
+                                          </CDropdown>
+                                        </CDropdownMenu> 
+                                        
+
                                     </CDropdown>
                                     <CNavItem>
                                         <CNavLink> <Link to="/Signin">Sign in</Link></CNavLink>
@@ -236,6 +419,13 @@ export default class Navbar extends Component {
                     </Route>
                     <Route path="/Signup">
                         <SignUp />
+                    </Route>
+                    <Route path="/products">
+                        <Products />
+                    </Route>
+
+                    <Route path="/Update">
+                        <Update />
                     </Route>
                 </Switch>
             </Router>

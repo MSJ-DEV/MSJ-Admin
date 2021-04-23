@@ -45,6 +45,7 @@ export default class Post extends Component {
         formData.append("file", imageselected)
         formData.append('upload_preset', 'qczp9fgd')
         await axios.post('https://api.cloudinary.com/v1_1/dm1xlu8ce/image/upload', formData).then((res) => {
+            console.log(res.data.url)
             axios.post('http://localhost:3333/api/poducts', {
                 name: name,
                 information: information,
@@ -160,7 +161,7 @@ export default class Post extends Component {
                                             <CLabel htmlFor="email-input">Quantity Stock</CLabel>
                                         </CCol>
                                         <CCol md="8">
-                                            <CInput placeholder="Quantity Stock" onChange={(e) => this.handleChange(e)} name="Quantity Stock" />
+                                            <CInput placeholder="Quantity Stock" onChange={(e) => this.handleChange(e)} name="quantityinstock" />
                                             <br />
                                         </CCol>
                                     </CFormGroup>

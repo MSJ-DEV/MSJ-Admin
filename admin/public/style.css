@@ -101,3 +101,118 @@ body, html, .App, #root, .auth-wrapper {
   color: white;
   
 }
+.card-product {
+  border: 1px solid;
+  border-color: grey;
+  max-width: 302px;
+  min-width: 265px;
+  /* max-height: 600px;
+  min-height: 600px; */
+  cursor: pointer;
+  margin: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 40;
+ 
+
+}
+/**
+ * Represents image.
+ *
+ */
+
+.card-image {
+  max-width: 300px;
+  min-width: 300px;
+  max-height: 250px;
+  min-height: 250px;
+}
+/**
+ * Represents a category.
+ */
+.card-category {
+  font-size: 14px;
+  margin: 8px;
+  text-transform: uppercase;
+  color: grey;
+}
+/**
+ * Represents a title.
+ 
+ */
+.card-title {
+  font-size: 20px;
+  margin: 8px;
+  font-weight: bold;
+}
+/**
+ * Represents a price.
+
+ */
+.card-price {
+  font-size: 15px;
+  margin: 8px;
+  color: grey;
+}
+
+.card-star-rating {
+  margin: 8px;
+}
+
+.card-star {
+  margin: 1px;
+
+}
+/**
+ * Represents star card in top right of the card.
+
+ */
+.card-star-top {
+  position: absolute;
+  margin-top: 15px;
+
+  /* margin-left: 230px; */
+}
+
+.card-star-top:hover {
+  color: orange;
+}
+
+.card-star:hover {
+  color: orange;
+}
+.starx{
+  visibility: hidden;
+  font-family: 30px;
+  cursor: pointer;
+  font-size: 30px;
+  position: relative;
+  left: 250px;
+  top: -250px;
+  color: rgb(47, 129, 22);
+  
+}
+.starx:before{
+  content: "\274C";
+  position: absolut;
+  visibility: visible;
+}
+.stary{
+  visibility: hidden;
+  font-family: 30py;
+  cursor: pointer;
+  font-size: 30px;
+  position: relative;
+  top: -250px;
+  color: rgb(47, 129, 22);
+  
+}
+.stary:before{
+  content: "\2705";
+  position: absolut;
+  visibility: visible;
+}
+.container2{
+  margin-left: 25%;
+ 
+}

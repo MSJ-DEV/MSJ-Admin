@@ -513,11 +513,7 @@ const Dashboard = () => {
                       <CProgress className="progress-xs" color="success" value="8" />
                     </div>
                   </div>
-                  <div className="divider text-center">
-                    <CButton color="link" size="sm" className="text-muted">
-                      <CIcon name="cil-options" />
-                    </CButton>
-                  </div>
+               
 
                 </CCol>
               </CRow>
