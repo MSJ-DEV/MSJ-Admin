@@ -53,9 +53,9 @@ export default class Post extends Component {
                 oldprice: oldprice,
                 newprice: newprice,
                 type: type,
-                quantity: quantity,
+                quantity: Number(quantity),
                 image: res.data.url,
-                quantityinstock: quantityinstock,
+                quantityinstock: Number(quantityinstock),
                 status: status,
                 promotion: promotion,
 

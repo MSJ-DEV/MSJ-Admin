@@ -216,3 +216,6 @@ body, html, .App, #root, .auth-wrapper {
   margin-left: 25%;
  
 }
+.product{
+  display: inline-flex;
+}

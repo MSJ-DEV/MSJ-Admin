@@ -1,8 +1,6 @@
 import React from 'react'
 import {
   CBadge,
-  CButton,
-  CButtonGroup,
   CCard,
   CCardBody,
   CCardFooter,
@@ -13,10 +11,7 @@ import {
   CCallout
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-
 import MainChartExample from '../charts/MainChartExample.js'
-
-import WidgetsDropdown from '../widgets/WidgetsDropdown.js'
 import WidgetsBrand from '../widgets/WidgetsBrand.js'
 const Dashboard = () => {
   return (

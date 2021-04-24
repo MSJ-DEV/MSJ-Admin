@@ -1,50 +1,39 @@
 import React, { PureComponent } from "react";
 import axios from 'axios'
-import StarsRating from 'stars-rating';
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
+  BrowserRouter as Link
 } from "react-router-dom";
-import Update from './Update'
 class App extends PureComponent {
   constructor(props) {
     super(props)
 
     this.state = {
-      data: [],
+data:[]
 
     }
-    this.getData = this.getData.bind(this)
-    this.delete = this.delete.bind(this)
   }
-  componentDidMount() {
-    this.getData()
-  }
-  getData() {
-    axios.get("http://localhost:3333/api/poducts")
-      .then((res) => {
-        console.log(res.data)
-        this.setState({ data: res.data })
-      }).catch((err) => {
-        console.log(err)
+  componentDidMount(){
+    var array=[]
+      this.props.data.filter((e,i)=>{
+        if(e.category==="Pasta"){
+                 array.push(e)
+        }
+        this.setState({data:array})
       })
-
   }
-  delete(id) {
+  delete(id,event) {
+    event.preventDefault()
     axios.delete("http://localhost:3333/api/poducts/" + id)
       .then((res) => {
     
-        this.getData()
+ window.location.reload()
       })
   }
 
   render() {
-    const { data } = this.state
-
+const {data}=this.state
     return (
-      <div>
+      <div className='product' >
         {data.map((element, index) =>
 
           <div className="card-product" key={index}>
@@ -54,8 +43,8 @@ class App extends PureComponent {
                 <input
                   className="starx"
                   type="checkbox"
-                  onClick={() => {
-                    this.delete(element.id);
+                  onClick={(event) => {
+                    this.delete(element.id,event);
                   }}
                 />
                <Link to="/Update"><input
@@ -69,16 +58,6 @@ class App extends PureComponent {
               </div>
 
               <div className="card-title">
-                <span>
-                  <StarsRating
-                    rating={5}
-                    starRatedColor="orange"
-                    starDimension="20px"
-                    starSpacing="1px"
-                    numberOfStars={5}
-                    name="rating"
-                  />
-                </span>
          Nmae : {element.name}
                 <span className="card-price">
                   <br />

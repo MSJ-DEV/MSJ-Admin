@@ -103,11 +103,13 @@
 
 import React, { Component } from 'react'
 import axios from 'axios'
-import Products from './products'
 import SignIn from './Signin'
 import Post from './Post'
 import Dashbord from './Dashbord'
 import SignUp from './Signup'
+import Drink from '../components/Category/Grocery/Drink'
+import Pasta from '../components/Category/Grocery/Pasta'
+import Keepbox from '../components/Category/Grocery/Keepbox'
 import {
     BrowserRouter as Router,
     Switch,
@@ -134,22 +136,46 @@ export default class Navbar extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            togle: true
+            togle: true,
+            data:[],
+            data1:[]
         }
-        this.checkAdmin = this.checkAdmin.bind(this)
+
     }
-    componentDidMount() {
-        this.checkAdmin()
-    }
-    checkAdmin() {
+    
+
+
+    sendinfo() {
         if (!!sessionStorage.getItem('checkAdmin')) {
             this.setState({ togle: false })
         } else {
             this.setState({ togle: true })
         }
-
     }
+   async componentDidMount() {
+        await axios.get("http://localhost:3333/api/poducts")
+          .then((res) => {
+         res.data.filter(e => {
+             var array=[]
+             var array1=[]
+             if(e.category==="Keep box"){
+                 array.push(e)
+                  
+             }
+            
+            this.setState({ data:array,data1:res.data})
+             
+         })
+            
+          }).catch((err) => {
+            console.log(err)
+          })
+        
+        
+      }
     render() {
+        const {data,data1}=this.state
+      
         return (
             <Router>
 
@@ -172,7 +198,7 @@ export default class Navbar extends Component {
                   </CDropdownToggle>
                                         <CDropdownMenu>
                                             <CDropdownItem><Link to="/Post">Add Products</Link></CDropdownItem>
-                                            <CDropdownItem><Link to="/products">All Products</Link></CDropdownItem>
+                                            <CDropdownItem>ll Products</CDropdownItem>
                                             <CDropdownItem>Something else here</CDropdownItem>
                                             <CDropdownItem>Separated link</CDropdownItem>
                                         </CDropdownMenu>
@@ -205,7 +231,7 @@ export default class Navbar extends Component {
                                         <CDropdown inNav>
                                       
                                         <CDropdownToggle caret>
-                                        Crocery
+                                        Grocery
                                             
                                          </CDropdownToggle>
                                          <CDropdownMenu>
@@ -221,7 +247,7 @@ export default class Navbar extends Component {
                                                </CDropdown>
                                                <CDropdown inNav>
                                         <CDropdownToggle caret>
-                                        Pasta
+                                        <Link to="/Pasta" >Pasta</Link> 
                                          </CDropdownToggle>
                                                 <CDropdownMenu>
                                                     <CDropdownItem>Beef</CDropdownItem>
@@ -231,12 +257,12 @@ export default class Navbar extends Component {
                                                </CDropdown>
                                                <CDropdown inNav>
                                         <CDropdownToggle caret>
-                                        Drink
+                                       <Link to="/Drink" >Drinks</Link> 
                                          </CDropdownToggle>
                                                 <CDropdownMenu>
-                                                    <CDropdownItem>Beef</CDropdownItem>
-                                                    <CDropdownItem>Lamb</CDropdownItem>
-                                                    <CDropdownItem>Pork</CDropdownItem>
+                                                    <CDropdownItem>Drink</CDropdownItem>
+                                                    <CDropdownItem>Eau</CDropdownItem>
+                                                    <CDropdownItem>Jus</CDropdownItem>
                                                 </CDropdownMenu>
                                                </CDropdown>
                                                <CDropdown inNav>
@@ -251,8 +277,7 @@ export default class Navbar extends Component {
                                                </CDropdown>
                                                <CDropdown inNav>
                                         <CDropdownToggle caret>
-                                        keep box
-
+                                       <Link to="/Keepbox" > keep box </Link>
                                          </CDropdownToggle>
                                                 <CDropdownMenu>
                                                     <CDropdownItem>Beef</CDropdownItem>
@@ -263,10 +288,8 @@ export default class Navbar extends Component {
                                         </CDropdownMenu> 
                                             </CDropdown>
                                             <CDropdown inNav>
-                                      
                                       <CDropdownToggle caret>
-                                      electronic
-                                          
+                                      electronic 
                                        </CDropdownToggle>
                                        <CDropdownMenu>
                                       <CDropdown inNav>
@@ -286,19 +309,15 @@ export default class Navbar extends Component {
                                                             <CDropdownItem>Keyboard</CDropdownItem>
                                                             <CDropdownItem>Headphones</CDropdownItem>
                                                             <CDropdownItem>Cable</CDropdownItem>
-
                                                         </CDropdownMenu>
-
                                                     </CDropdown>
                                               </CDropdownMenu>
                                              </CDropdown>
                                       </CDropdownMenu> 
                                           </CDropdown>
-                                          <CDropdown inNav>
-                                      
+                                          <CDropdown inNav>                                   
                                       <CDropdownToggle caret>
-                                      Clothes
-                                          
+                                      Clothes                                         
                                        </CDropdownToggle>
                                        <CDropdownMenu>
                                       <CDropdown inNav>
@@ -323,11 +342,9 @@ export default class Navbar extends Component {
                                              </CDropdown>
                                       </CDropdownMenu> 
                                           </CDropdown>
-                                          <CDropdown inNav>
-                                      
+                                          <CDropdown inNav>                                      
                                       <CDropdownToggle caret>
                                       makeup
-                                          
                                        </CDropdownToggle>
                                               <CDropdownMenu>
                                               <CDropdownItem>Laptop</CDropdownItem>
@@ -421,12 +438,18 @@ export default class Navbar extends Component {
                     <Route path="/Signup">
                         <SignUp />
                     </Route>
-                    <Route path="/products">
-                        <Products />
-                    </Route>
-
                     <Route path="/Update">
                         <Update />
+                    </Route>
+                    <Route path="/Drink">
+                        <Drink />
+                    </Route>
+                    <Route path="/Keepbox">
+                    <Keepbox data={data} />
+                    </Route>
+                    <Route path="/Pasta">
+                    <Pasta data={data1} />
+                   { console.log(data1,'rrrrrr')}
                     </Route>
                 </Switch>
             </Router>
