@@ -2,6 +2,20 @@ import React, { Component } from 'react'
 import axios from 'axios'
 // import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 // import './App.css';
+import {
+    CButton,
+    CCard,
+    CCardBody,
+    CCardGroup,
+    CCol,
+    CContainer,
+    CForm,
+    CInput,
+    CInputGroup,
+    CInputGroupPrepend,
+    CInputGroupText,
+    CRow
+  } from '@coreui/react'
 export default class Signin extends Component {
     constructor(props){
         super(props)
@@ -30,33 +44,39 @@ export default class Signin extends Component {
       }
     render() {
         return (
-            <div className="container">
-            <form>
-                <h3>Sign In</h3>
-
-                <div className="form-group">
-                    <label>Email address</label>
-                    <input type="email" className="form-control" placeholder="Enter email" name="email" onChange={(e)=>this.handleChange(e)} />
-                </div><br />
-
-                <div className="form-group">
-                    <label>Password</label>
-                    <input type="password" className="form-control" placeholder="Enter password" name="password" onChange={(e)=>this.handleChange(e)} />
-                </div><br />
-
-                <div className="form-group">
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="customCheck1" />
-                        <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
-                    </div>
-                </div><br />
-
-                <button type="button" className="btn btn-primary btn-block" onClick={(e)=>this.checkAdmin(e)}>LOGIN</button>
-                <p className="forgot-password text-right">
-                    Forgot <a href="#">password?</a>
-                </p>
-            </form>
+            <div className="c-app c-default-layout flex-row align-items-center">
+            <CContainer>
+              <CRow className="justify-content-center">
+                <CCol md="8">
+                  <CCardGroup>
+                    <CCard className="p-4">
+                      <CCardBody>
+                        <CForm>
+                          <h1>Login</h1>
+                          <p className="text-muted">Sign In to your account</p>
+                          <CInputGroup className="mb-3">
+                            <CInput type="text" placeholder="Enter email" autoComplete="email" name="email" onChange={(e)=>this.handleChange(e)} />
+                          </CInputGroup>
+                          <CInputGroup className="mb-4">
+                            <CInput type="password" placeholder="Password" autoComplete="current-password"name="password" onChange={(e)=>this.handleChange(e)}  />
+                          </CInputGroup>
+                          <CRow>
+                            <CCol xs="6">
+                              <CButton color="primary" className="px-4" onClick={(e)=>this.checkAdmin(e)}>Login</CButton>
+                            </CCol>
+                            <CCol xs="6" className="text-right">
+                              <CButton color="link" className="px-0">Forgot password?</CButton>
+                            </CCol>
+                          </CRow>
+                        </CForm>
+                      </CCardBody>
+                    </CCard>
+                  </CCardGroup>
+                </CCol>
+              </CRow>
+            </CContainer>
             </div>
+         
         )
     }
 }

@@ -63,7 +63,7 @@ export default class Post extends Component {
                 console.log(res)
             })
         })
-       
+
     }
     render() {
         return (
@@ -133,7 +133,14 @@ export default class Post extends Component {
                                             <CLabel htmlFor="Image">Chose your Image</CLabel>
                                         </CCol>
                                         <CCol md="8">
-                                            <CInputFile onChange={(event) => this.setState({ imageselected: event.target.files[0] })} />
+
+                                            <input type='file' name='image-uploade' id='input' accept="image/*" onChange={(event) => this.setState({ imageselected: event.target.files[0] })} />
+                                            <div className="label">
+                                                <label className="image-upload" htmlFor="input">
+                                                    <i className="material-icons">add_photo_alternate</i>
+						Choose your Product Photo
+					</label>
+                                            </div>
                                         </CCol>
                                     </CFormGroup>
 
@@ -191,15 +198,18 @@ export default class Post extends Component {
                                             <CInput placeholder="newprice" onChange={(e) => this.handleChange(e)} name="newprice" />
                                             <br />
                                         </CCol>
+                                        
                                     </CFormGroup>
+                                    
                                 </CForm>
 
                             </CCardBody>
                         </CCard>
+                        <CCol md='4'>
+                        <button id="savepost" onClick={() => this.handleClick()}> Save </button>
                     </CCol>
-                    <CCol md='4'>
-                        <CButton onClick={()=>this.handleClick()}> Save </CButton>
                     </CCol>
+                   
 
                 </CRow>
 

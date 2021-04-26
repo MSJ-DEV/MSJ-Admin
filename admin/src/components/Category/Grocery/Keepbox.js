@@ -1,21 +1,31 @@
 import React, { PureComponent } from "react";
 import axios from 'axios'
-
-import {
-  BrowserRouter as Link
-} from "react-router-dom";
 import Update from '../../Update'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 class App extends PureComponent {
   constructor(props) {
     super(props)
 
     this.state = {
-      data: [],
+data:[]
 
     }
   }
-  delete(id,event) {
-    event.preventDefault()
+  componentDidMount(){
+    var array=[]
+      this.props.data.filter((e,i)=>{
+        if(e.category==="Keep box"){
+                 array.push(e)
+        }
+        this.setState({data:array})
+      })
+  }
+  delete(id) {
     axios.delete("http://localhost:3333/api/poducts/" + id)
       .then((res) => {
     
@@ -24,11 +34,14 @@ class App extends PureComponent {
   }
 
   render() {
-    
-
+const {data}=this.state
+console.log(this.props.data)
     return (
-      <div className='product' >
-        {this.props.data.map((element, index) =>
+
+      <div className='col-8' >
+
+          <div className="product">
+        {data.map((element, index) =>
 
           <div className="card-product" key={index}>
             <img className="card-image" src={element.image} />
@@ -42,11 +55,11 @@ class App extends PureComponent {
                   }}
                 />
                <Link to="/Update"><input
-                 
                   className="stary"
                   type="checkbox"
                   onClick={() => {
                     localStorage.setItem('id', element.id);
+                    
                   }}
                 /></Link> 
               </div>
@@ -82,8 +95,12 @@ class App extends PureComponent {
 
 
         )}
-       
+       </div>
       </div>
+  
+
+      
+    
 
     );
   }

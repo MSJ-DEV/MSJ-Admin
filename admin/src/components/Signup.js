@@ -1,26 +1,69 @@
-import React, { Component } from 'react'
-// import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-// import './App.css';
-export default class Signup extends Component {
-    render() {
-        return (
-            <div className="container">
-            <form>
-                <h3>Sign Up</h3>
+import React from 'react'
+import { FacebookLoginButton,GoogleLoginButton } from "react-social-login-buttons";
 
-                <div className="form-group">
-                    <label>Email address</label>
-                    <input type="email" className="form-control" placeholder="Enter email" />
-                </div><br />
+import {
+  CButton,
+  CCard,
+  CCardBody,
+  CCardFooter,
+  CCol,
+  CContainer,
+  CForm,
+  CInput,
+  CInputGroup,
+  CRow
+} from '@coreui/react'
 
-                <div className="form-group">
-                    <label>Password</label>
-                    <input type="password" className="form-control" placeholder="Enter password" />
-                </div><br />
 
-                <button type="submit" className="btn btn-primary btn-block">REGISTER</button>
-            </form>
-            </div>
-        )
-    }
+const Register = () => {
+  return (
+    <div className="c-app c-default-layout flex-row align-items-center">
+      <CContainer>
+        <CRow className="justify-content-center">
+          <CCol md="9" lg="7" xl="6">
+            <CCard className="mx-4">
+              <CCardBody className="p-4">
+                <CForm>
+                  <h1>Register</h1>
+                  <p className="text-muted">Create your account</p>
+                  <CInputGroup className="mb-3">
+                    <CInput type="text" placeholder="Username" autoComplete="username" />
+                  </CInputGroup>
+                  <CInputGroup className="mb-3">
+                    <CInput type="text" placeholder="Email" autoComplete="email" />
+                  </CInputGroup>
+                  <CInputGroup className="mb-3">
+                    <CInput type="password" placeholder="Password" autoComplete="new-password" />
+                  </CInputGroup>
+                  <CInputGroup className="mb-4">
+                    <CInput type="password" placeholder="Repeat password" autoComplete="new-password" />
+                  </CInputGroup>
+                  <input type='file' name='image-uploade' id='input' accept="image/*" />
+                  <div className="label">
+          <label className="image-upload" htmlFor="input">
+						<i className="material-icons">add_photo_alternate</i>
+						Choose your Photo
+					</label>
+          </div>
+                  <CButton color="success" block>Create Account</CButton>
+                </CForm>
+              </CCardBody>
+              <CCardFooter className="p-4">
+                <CRow>
+                  <CCol xs="12" sm="6">
+                  <FacebookLoginButton onClick={() => alert("Hello")} />
+                  </CCol>
+                  <CCol xs="12" sm="6">
+                  <GoogleLoginButton onClick={() => alert("Hello")} />
+                  </CCol>
+                </CRow>
+              </CCardFooter>
+            </CCard>
+          </CCol>
+        </CRow>
+      </CContainer>
+    </div>
+  )
 }
+
+export default Register

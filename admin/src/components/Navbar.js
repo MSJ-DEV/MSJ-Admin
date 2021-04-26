@@ -110,15 +110,20 @@ import SignUp from './Signup'
 import Drink from '../components/Category/Grocery/Drink'
 import Pasta from '../components/Category/Grocery/Pasta'
 import Keepbox from '../components/Category/Grocery/Keepbox'
+import Meat from '../components/Category/Grocery/Meat'
+import Update from './Update'
+import Home from './Home'
+
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     Link
 } from "react-router-dom";
-import Update from './Update'
+
 
 import {
+    CCardHeader,
     CRow,
     CCol,
     CCard,
@@ -129,7 +134,10 @@ import {
     CDropdownToggle,
     CNav,
     CNavItem,
-    CNavLink
+    CNavLink,
+    CForm,
+    CButton,
+    CInput
 } from '@coreui/react'
 
 export default class Navbar extends Component {
@@ -155,17 +163,9 @@ export default class Navbar extends Component {
    async componentDidMount() {
         await axios.get("http://localhost:3333/api/poducts")
           .then((res) => {
-         res.data.filter(e => {
-             var array=[]
-             var array1=[]
-             if(e.category==="Keep box"){
-                 array.push(e)
-                  
-             }
+        
             
-            this.setState({ data:array,data1:res.data})
-             
-         })
+            this.setState({ data:res.data})
             
           }).catch((err) => {
             console.log(err)
@@ -174,24 +174,30 @@ export default class Navbar extends Component {
         
       }
     render() {
-        const {data,data1}=this.state
+        
+        const {data}=this.state
       
         return (
             <Router>
-
+   <CCardHeader>
 
                 <CRow>
-                    <CCol xs="2">
-                        <img src="https://www.carrefourtunisie.com/medias/sliders/2020-04-08/s6desktop.jpg" height="70" alt="mdb logo" />
-                    </CCol>
-                    <CCol xs="5">
+                    <CCol md="12">
+                     
+                   
                         <CCard>
-                            <CCardBody>
 
+                            <CCardBody >
                                 <CNav variant="tabs">
-                                    <CNavItem>
-                                        <CNavLink ><Link to="/Dashbord">Home</Link></CNavLink>
+                               
+                                <img src="https://www.carrefourtunisie.com/medias/sliders/2020-04-08/s6desktop.jpg" height="70" alt="mdb logo" />
+                                <CNavItem>
+                                        <CNavLink ><Link to="/">Home</Link></CNavLink>
                                     </CNavItem>
+                                <CNavItem>
+                                        <CNavLink ><Link to="/Dashbord">Dashbord</Link></CNavLink>
+                                    </CNavItem>
+                               
                                     <CDropdown inNav>
                                         <CDropdownToggle caret>
                                             Dropdown
@@ -203,23 +209,6 @@ export default class Navbar extends Component {
                                             <CDropdownItem>Separated link</CDropdownItem>
                                         </CDropdownMenu>
                                     </CDropdown>
-                                    {/* <CNavItem>
-                                        <CNavLink>Link</CNavLink>
-                                    </CNavItem>
-                                    <CNavItem>
-                                        <CNavLink disabled>Disabled</CNavLink>
-                                    </CNavItem> */}
-                                </CNav>
-                            </CCardBody>
-                        </CCard>
-                    </CCol>
-
-                    <CCol xs="5">
-                        <CCard>
-
-                            <CCardBody >
-                                <CNav variant="tabs">
-          
                                                      <CDropdown inNav>
                                         <CDropdownToggle caret>
                                             Category
@@ -237,7 +226,7 @@ export default class Navbar extends Component {
                                          <CDropdownMenu>
                                         <CDropdown inNav>
                                         <CDropdownToggle caret>
-                                        Meat
+                                        <Link to="/Meat" >Meat</Link> 
                                          </CDropdownToggle>
                                                 <CDropdownMenu>
                                                     <CDropdownItem>Beef</CDropdownItem>
@@ -413,18 +402,19 @@ export default class Navbar extends Component {
 
                                     </CDropdown>
                                     <CNavItem>
-                                        <CNavLink> <Link to="/Signin">Sign in</Link></CNavLink>
+                                        <CNavLink className="sin"> <Link to="/Signin">Sign in</Link></CNavLink>
                                     </CNavItem>
                                     <CNavItem>
                                         <CNavLink ><Link to="/Signup">Sign Up</Link></CNavLink>
                                     </CNavItem>
-
+                 
                                 </CNav>
                             </CCardBody>
                         </CCard>
                     </CCol>
+                    
                 </CRow>
-
+                </CCardHeader>
                 <Switch>
                     <Route path="/Post">
                         <Post />
@@ -442,14 +432,20 @@ export default class Navbar extends Component {
                         <Update />
                     </Route>
                     <Route path="/Drink">
-                        <Drink />
+                        <Drink data={data}/>
                     </Route>
                     <Route path="/Keepbox">
                     <Keepbox data={data} />
                     </Route>
                     <Route path="/Pasta">
-                    <Pasta data={data1} />
-                   { console.log(data1,'rrrrrr')}
+                    <Pasta data={data} />
+                    </Route>
+                    <Route path="/Meat">
+                        <Meat  data={data}/>
+                    </Route>
+                    <Route path="/">
+                   < Home data={data} />
+                        
                     </Route>
                 </Switch>
             </Router>
@@ -457,3 +453,12 @@ export default class Navbar extends Component {
         )
     }
 }
+{/* <Router>
+<Switch>
+
+<Route path="/Update">
+    <Update />
+</Route>
+
+</Switch>
+</Router> */}

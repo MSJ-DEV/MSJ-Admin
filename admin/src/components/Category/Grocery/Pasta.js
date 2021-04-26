@@ -1,7 +1,10 @@
 import React, { PureComponent } from "react";
 import axios from 'axios'
 import {
-  BrowserRouter as Link
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
 } from "react-router-dom";
 class App extends PureComponent {
   constructor(props) {
