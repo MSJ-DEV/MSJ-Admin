@@ -5,167 +5,10 @@ padding-left: 60% !important;
 }
 
 
-.modal-body{
-    justify-content: center;
-    margin-top: 50px;
-    height: 40px;
-    margin-left: 40px;
+.modal-open .modal{
+    background-image: url("http://prod-upp-image-read.ft.com/7727a7f2-3da4-11e8-b9f9-de94fa33a81e");
 }
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
-
-* {
-  box-sizing: border-box;
-}
-
-h1,h2,h3,h4,h5,h6,label,span {
-  font-weight: 500;
-  font-family: 'Fira Sans', sans-serif;
-}
-
-body, html, .App, #root, .auth-wrapper {
-  width: 100%;
-  height: 100%;
-}
-
-.navbar-light {
-  background-color: #ffffff;
-  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
-}
-
-.auth-wrapper {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  text-align: left;
-}
-
-.auth-inner {
-  width: 450px;
-  margin: auto;
-  background: #ffffff;
-  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
-  padding: 40px 55px 45px 55px;
-  border-radius: 15px;
-  transition: all .3s;
-}
-
-.auth-wrapper .form-control:focus {
-  border-color: #167bff;
-  box-shadow: none;
-}
-
-.auth-wrapper h3 {
-  text-align: center;
-  margin: 0;
-  line-height: 1;
-  padding-bottom: 20px;
-}
-
-.custom-control-label {
-  font-weight: 400;
-}
-
-.forgot-password,
-.forgot-password a {
-  text-align: right;
-  font-size: 13px;
-  padding-top: 10px;
-  color: #7f7d7d;
-  margin: 0;
-}
-
-.forgot-password a {
-  color: #167bff;
-}
-.container1{
-  margin-left: 25%;
-  padding-left: 2%;
-  border: solid ;
-  border-radius: 3%; 
-  width: 52%;
- 
-}
-
-.card-product {
-  border: 1px solid;
-  border-color: grey;
-  max-width: 302px;
-  min-width: 265px;
-  /* max-height: 600px;
-  min-height: 600px; */
-  cursor: pointer;
-  margin: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 40;
- 
-
-}
-/**
- * Represents image.
- *
- */
-
-.card-image {
-  max-width: 300px;
-  min-width: 300px;
-  max-height: 250px;
-  min-height: 250px;
-}
-/**
- * Represents a category.
- */
-.card-category {
-  font-size: 14px;
-  margin: 8px;
-  text-transform: uppercase;
-  color: grey;
-}
-/**
- * Represents a title.
- 
- */
-.card-title {
-  font-size: 20px;
-  margin: 8px;
-  font-weight: bold;
-}
-/**
- * Represents a price.
-
- */
-.card-price {
-  font-size: 15px;
-  margin: 8px;
-  color: grey;
-}
-
-.card-star-rating {
-  margin: 8px;
-}
-
-.card-star {
-  margin: 1px;
-
-}
-/**
- * Represents star card in top right of the card.
-
- */
-.card-star-top {
-  position: absolute;
-  margin-top: 15px;
-
-  /* margin-left: 230px; */
-}
-
-.card-star-top:hover {
-  color: orange;
-}
-
-.card-star:hover {
-  color: orange;
-}
 .starx{
   visibility: hidden;
   font-family: 20px;
@@ -217,4 +60,18 @@ body, html, .App, #root, .auth-wrapper {
   transform: scale(5);
   cursor: zoom-in;
 
+}
+.error{
+  color: red;
+  font-size: 14px;
+  font-family:cursive;
+}
+.showmore{
+  margin-left: 50%;
+}
+#displaymore{
+  background: blue;
+  color: white;
+  box-shadow: 5px;
+  border-radius: 2%;
 }

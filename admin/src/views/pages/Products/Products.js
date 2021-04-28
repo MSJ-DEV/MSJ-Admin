@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import TheHeader from '../../../containers/TheHeader'
-export default class Update extends Component {
+import Update from './update'
+export default class Product extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            data: []
+            data: [],
+            i:10
         }
     }
     componentDidMount() {
@@ -14,7 +16,7 @@ export default class Update extends Component {
         })
     }
     render() {
-        const { data } = this.state
+        const { data,i } = this.state
         return (
             <div>
 
@@ -44,20 +46,20 @@ export default class Update extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {data.map((e, i) =>
+                            {data.slice(0,i).map((e, i) =>
 
                                 <tr key={i}>
                                     <td className="clearfix">
                                         <div className="c-avatar">
                                             <img src={e.image} className="c-avatar-img" />
-                                            <span className="c-avatar-status bg-success"></span>
+                                            {/* <span className="c-avatar-status bg-success"></span> */}
                                         </div>
                                     </td>
                                     <td>
                                         <strong>{e.name}</strong>
                                     </td>
                                     <td className="clearfix">
-                                        <strong>{e.information}</strong>
+                                        <strong>{e.date}</strong>
                                     </td>
                                     <td>
                                         <div className="clearfix">
@@ -92,20 +94,26 @@ export default class Update extends Component {
                                             className="starx"
                                             type="checkbox"
                                         />
-                                        
+
                                     </td>
                                     <td>  <input
-                                            className="stary"
-                                            type="checkbox"
-                                           
-
-                                        /></td>
+                                        data-toggle="modal" data-target="#exampleModal"
+                                        className="stary"
+                                        type="checkbox"
+                                           onClick={()=>localStorage.setItem("id",e.id)}
+                                    /></td>
                                 </tr>
                             )}
                         </tbody>
+                        
                     </table>
+                    
+                    <div className="showmore"  ><button id="displaymore" onClick={()=>this.setState({i:i+5})}>Show more...</button></div>
+                    
                 </div>
+                <Update />
             </div>
+
         )
     }
 }
