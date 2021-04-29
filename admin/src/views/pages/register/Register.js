@@ -25,6 +25,7 @@ export default class Register extends Component {
       email:"",
       password:"",
       repeatepassword:"",
+      country:"cif-"+"",
       errors: {}
     }
   }
@@ -148,6 +149,20 @@ handleChange(e) {
                     </CInputGroupPrepend>
                     <CInput name="repeatepassword" type="password" placeholder="Repeat password" autoComplete="new-password"onChange={(e)=>this.handleChange(e)} />
                     <span className="error">{this.state.errors["repeatepassword"]}</span>
+                  </CInputGroup>
+                 <CInputGroup className="mb-4">
+                    <CInputGroupPrepend>
+                      <CInputGroupText>
+                        <CIcon name={this.state.country} />
+                      </CInputGroupText>
+                      {console.log(this.state)}
+                    </CInputGroupPrepend>
+                    <select className="selectsize"  id="cars" onChange={(e)=>this.setState({country:"cif-"+e.target.value})} name="country">
+                            <option value="Select size">Select Country</option>
+                                <option>Tn</option>
+                                <option>dz</option>
+                                <option>us</option>
+                        </select>   
                   </CInputGroup>
                   <CButton color="success"  onClick= {(e)=>this.contactSubmit(e)} >Create Account</CButton>
                 </CForm>

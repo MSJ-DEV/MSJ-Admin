@@ -7,7 +7,7 @@ export default class Product extends Component {
         super(props)
         this.state = {
             data: [],
-            i:10
+            i:11
         }
     }
     componentDidMount() {

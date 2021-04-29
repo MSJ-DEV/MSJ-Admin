@@ -34,7 +34,12 @@ import {
   cifIn,
   cifFr,
   cifEs,
-  cifPl
+  cifPl,
+  cifTn,
+  cifAl,
+  cifAg,
+  cifDz
+
 } from '@coreui/icons'
 import {
   cilAlignCenter,
@@ -83,6 +88,7 @@ import {
   cilIndentIncrease,
   cilInputPower,
   cilItalic,
+  cilImage,
   cilJustifyCenter,
   cilJustifyLeft,
   cilLaptop,
@@ -127,7 +133,8 @@ import {
   cilUserUnfollow,
   cilX,
   cilXCircle,
-  cilWarning
+  cilWarning,
+  
 } from '@coreui/icons'
 
 export const icons = Object.assign({}, {
@@ -145,6 +152,7 @@ export const icons = Object.assign({}, {
   cilBan,
   cilBasket,
   cilBell,
+  cilOptions,
   cilBold,
   cilBookmark,
   cilCalculator,
@@ -177,6 +185,7 @@ export const icons = Object.assign({}, {
   cilGraph,
   cilHome,
   cilInbox,
+  cilImage,
   cilIndentDecrease,
   cilIndentIncrease,
   cilInputPower,
@@ -225,14 +234,19 @@ export const icons = Object.assign({}, {
   cilUserUnfollow,
   cilX,
   cilXCircle,
-  cilWarning
+  cilWarning,
+  
 }, {
   cifUs,
   cifBr,
   cifIn,
   cifFr,
   cifEs,
-  cifPl
+  cifPl,
+  cifTn,
+  cifAl,
+  cifAg,
+  cifDz
 }, {
   cibSkype,
   cibFacebook,
