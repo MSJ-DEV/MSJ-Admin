@@ -16,11 +16,13 @@ import {
 import CIcon from '@coreui/icons-react'
 import TheHeader from '../../../containers/TheHeader'
 import React, { Component } from 'react'
+import axios from 'axios'
 
 export default class Register extends Component {
   constructor(props){
     super(props)
     this.state={
+      imageselected: [],
       username:"",
       email:"",
       password:"",
@@ -30,10 +32,9 @@ export default class Register extends Component {
     }
   }
   handleValidation(){
-    let{username,email,password,repeatepassword}= this.state
+    let{username,email,password,repeatepassword,country}= this.state
     let errors = {};
     let formIsValid = true;
-let pattern="[-a-zA-Z0-9~!$%^&amp;*_=+}{'?]+(\.[-a-zA-Z0-9~!$%^&amp;*_=+}{'?]+)*@([a-zA-Z0-9_][-a-zA-Z0-9_]*(\.[-a-zA-Z0-9_]+)*\.([cC][oO][mM]))(:[0-9]{1,5})?"
     //Name
     if(!username){
        formIsValid = false;
@@ -77,18 +78,36 @@ if(typeof password !== "undefined"){
 if(repeatepassword!==password){
   errors.repeatepassword = "Repeat password shoold Containe the Same like password "
 }
-  
+  if(country.length<0){
+    errors.country = "Cannot be empty";
+  }
 
 
    this.setState({errors: errors});
    return formIsValid;
 }
 
-contactSubmit(e){
+ async contactSubmit(e){
+  let{username,email,password,repeatepassword,country,image,imageselected}= this.state
     e.preventDefault();
-
     if(this.handleValidation()){
-       alert("Form submitted");
+      const formData = new FormData()
+      formData.append("file", imageselected)
+      formData.append('upload_preset', 'qczp9fgd')
+     await axios.post('https://api.cloudinary.com/v1_1/dm1xlu8ce/image/upload', formData).then((res) => {
+        console.log(res.data.url)
+   axios.post("http://localhost:3333/api/admin",{
+        username:username,
+        email:email,
+        password:password,
+        repeatepassword:repeatepassword,
+        image:res.data.url,
+        country:country,
+      }).then((res)=>{
+        console.log(res)
+      })
+
+    })
     }else{
        alert("Form has errors.")
     }
@@ -103,6 +122,7 @@ handleChange(e) {
   
 }
   render() {
+    const flag=["Tn","Us","Dz","Fr"]
     return (
       <div>
       <TheHeader />
@@ -150,6 +170,13 @@ handleChange(e) {
                     <CInput name="repeatepassword" type="password" placeholder="Repeat password" autoComplete="new-password"onChange={(e)=>this.handleChange(e)} />
                     <span className="error">{this.state.errors["repeatepassword"]}</span>
                   </CInputGroup>
+                  <CInputGroup className="mb-3">
+                    <CInputGroupPrepend>
+                      <CInputGroupText>
+                      <input type="file"  accept="image/*" onChange={(event) => this.setState({ imageselected: event.target.files[0] })} />
+                      </CInputGroupText>
+                    </CInputGroupPrepend>
+                  </CInputGroup>
                  <CInputGroup className="mb-4">
                     <CInputGroupPrepend>
                       <CInputGroupText>
@@ -159,9 +186,11 @@ handleChange(e) {
                     </CInputGroupPrepend>
                     <select className="selectsize"  id="cars" onChange={(e)=>this.setState({country:"cif-"+e.target.value})} name="country">
                             <option value="Select size">Select Country</option>
-                                <option>Tn</option>
-                                <option>dz</option>
-                                <option>us</option>
+                            {flag.map((e,i)=>
+                            <option key={i}>{e}</option>
+                            )}
+                                
+                                
                         </select>   
                   </CInputGroup>
                   <CButton color="success"  onClick= {(e)=>this.contactSubmit(e)} >Create Account</CButton>
