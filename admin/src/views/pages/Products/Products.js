@@ -51,7 +51,7 @@ export default class Product extends Component {
                                 <tr key={i}>
                                     <td className="clearfix">
                                         <div className="c-avatar">
-                                            <img src={e.image} className="c-avatar-img" />
+                                            <img src={e.image} className="c-avatar-img" alt="..."/>
                                             {/* <span className="c-avatar-status bg-success"></span> */}
                                         </div>
                                     </td>

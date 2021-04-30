@@ -3,7 +3,6 @@ import {
   CButton,
   CCard,
   CCardBody,
-  CCardFooter,
   CCol,
   CContainer,
   CForm,
@@ -75,7 +74,7 @@ if(typeof password !== "undefined"){
      errors.password = "password shoold Containe letters UperCase, LowerCase, Number and Special Caracter ";
   }        
 }
-if(repeatepassword!==password){
+if(repeatepassword !== password){
   errors.repeatepassword = "Repeat password shoold Containe the Same like password "
 }
   if(country.length<0){

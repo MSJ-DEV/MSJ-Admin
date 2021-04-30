@@ -38,7 +38,7 @@ export default class update extends Component {
         if(formIsValid=true){
             this.updateProduct()
         }
-        // return formIsValid
+   return formIsValid
     }
     handleChange(e) {
         this.setState({ [e.target.name]: e.target.value })

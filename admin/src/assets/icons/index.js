@@ -204,7 +204,6 @@ export const icons = Object.assign({}, {
   cilMap,
   cilMoon,
   cilNotes,
-  cilOptions,
   cilPaperclip,
   cilPaperPlane,
   cilPencil,
