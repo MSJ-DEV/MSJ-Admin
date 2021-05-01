@@ -8,7 +8,7 @@ export default class Profile extends Component {
         super(props)
         this.state = {
             imageselected:[],
-            Firstname:"",
+            Firstname:"" ,
             Lastname:"",
             email:"",
             Address:"",
@@ -16,21 +16,22 @@ export default class Profile extends Component {
             password:"",
             country:"",
             Zip:"",
+            image:"",
             Oldpassword:"",
             confirmpassword:"",
-            errors:{},
-           
-
+            mypassword:"",
+            errors:{}
         }
         
     }
   
     handleValidation(){
-        let{Firstname,Lastname,email,password,confirmpassword,country}= this.state
+        let{Firstname,Lastname,email,password,confirmpassword,Oldpassword,mypassword,country}= this.state
         let errors = {};
         let formIsValid = true;
         //Name
         if(!Firstname){
+         
            formIsValid = false;
            errors.Firstname = "Cannot be empty";
         }
@@ -81,9 +82,15 @@ export default class Profile extends Component {
          errors.password = "password shoold Containe letters UperCase, LowerCase, Number and Special Caracter ";
       }        
     }
-    if(confirmpassword !== password){
-      errors.confirmpassword = "Repeat password shoold Containe the Same like password "
-    }
+    if(password!==mypassword && Oldpassword!==mypassword){
+        formIsValid = false;
+           errors.Oldpassword = "Oldpassword shoold equale to password ";
+    }else if(password!==mypassword && password!==confirmpassword){
+            formIsValid=false
+            errors.confirmpassword = "Repeat password shoold Containe the Same like password "
+        }else if(password!==mypassword && Oldpassword.length && password===confirmpassword ){
+            formIsValid = true;
+        }
       if(country.length<0){
         errors.country = "Cannot be empty";
       }
@@ -92,11 +99,46 @@ export default class Profile extends Component {
        this.setState({errors: errors});
        return formIsValid;
     }
+    async componentDidMount(){
+        const {Firstname,Lastname,email,password,country,Zip,Address,phone,mypassword}= this.state
+      await  axios.get('http://localhost:3333/api/admin/'+1).then((res)=>{
+            if(Firstname.length===0||Lastname.length===0||email.length===0||password.length===0||country.length===0 ||Address.length===0||Zip.length===0||Address.length===0||phone==="undefinde" ){
+                this.setState({
+                    Firstname:res.data.Firstname,
+                    Lastname:res.data.Lastname,
+                    email:res.data.email,
+                    password:res.data.password,
+                    country:res.data.country,
+                    Zip:res.data.Zip,
+                    Address:res.data.Address,
+                   numberPhone:res.data.numberPhone,
+                   image:res.data.image,
+                   mypassword:res.data.password
+                })
+            }
+        })
+    }
     async contactSubmit(e){
       const   id=1
-        const {Firstname,Lastname,email,password,country,Zip,imageselected,Address,phone}= this.state
+        const {Firstname,Lastname,email,password,country,Zip,imageselected,Address,image,phone}= this.state
           e.preventDefault(e);
           if(this.handleValidation()){
+            if(image.length!==0 && imageselected.length===0 ){
+                axios.patch("http://localhost:3333/api/getall/"+id,{
+                    Firstname:Firstname,
+                    Lastname:Lastname,
+                    email:email,
+                    Address:Address,
+                    numberPhone:phone,
+                    password:password,
+                    image:image,
+                    country:country,
+                    Zip:Zip
+                  })
+                  .then((res)=>{
+                    console.log(res)
+                  })
+            }else if(imageselected){
             const formData = new FormData()
             formData.append("file", imageselected)
             formData.append('upload_preset', 'qczp9fgd')
@@ -110,19 +152,19 @@ export default class Profile extends Component {
               password:password,
               image:res.data.url,
               country:country,
-              Zip:Zip,
-             
+              Zip:Zip
             })
             
             .then((res)=>{
-              console.log(res)
+              
             })
             
           })
+        }
           }else{
              alert("Form has errors.")
           }
-      
+        
       }
     
     handleChange(e) {
@@ -132,8 +174,8 @@ export default class Profile extends Component {
         )
     }
     render() {
-        
-        const { phone,errors  } = this.state
+        console.log(this.state.mypassword)
+        const { phone,errors ,image,imageselected } = this.state
         return (
             <div className="container">
                 <div className="row justify-content-center">
@@ -153,7 +195,7 @@ export default class Profile extends Component {
                                 <div className="row mt-5 align-items-center">
                                     <div className="col-md-3 text-center mb-5">
                                         <div className="avatar avatar-xl">
-                                            <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..." className="avatar-img rounded-circle" />
+                                            <img src={image} alt="..." className="avatar-img rounded-circle" />
 
                                         </div>
                                         <input type="file" accept="image/*" name="image-upload" id="input" onChange={(event) => this.setState({ imageselected: event.target.files[0] })} />
@@ -236,6 +278,7 @@ export default class Profile extends Component {
                                         <div className="form-group">
                                             <label htmlFor="inputPassword4">Old Password</label>
                                             <input type="password" className="form-control" name="Oldpassword" onChange={(e)=>this.handleChange(e)}/>
+                                            <span className="error">{this.state.errors["Oldpassword"]}</span>
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="inputPassword5">New Password</label>

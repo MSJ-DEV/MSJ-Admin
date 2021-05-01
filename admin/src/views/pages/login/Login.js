@@ -1,4 +1,5 @@
-import React from 'react'
+
+import axios from 'axios'
 import {
   CButton,
   CCard,
@@ -15,10 +16,38 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import TheHeader from '../../../containers/TheHeader'
-const Login = () => {
-  return (
-    <div>
-        <TheHeader />
+import React, { Component } from 'react'
+export default class Login extends Component {
+  constructor(props){
+    super(props)
+    this.state={
+         email:"",
+         password:""
+    }
+  }
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value })
+    console.log(
+        this.state
+    )
+}
+checkadmin(e){
+  const {password,email}=this.state
+ axios.post('http://localhost:3333/api/admin',{
+   email:email,
+   password:password
+   
+ }).then(res=>{
+   console.log(res)
+ }).catch(err=>{
+   console.log(err)
+ })
+}
+  render() {
+ 
+    return (
+      <div>
+           <TheHeader />
     <div className="c-app c-default-layout flex-row align-items-center">
 
       <CContainer>
@@ -37,7 +66,7 @@ const Login = () => {
                           <CIcon name="cil-user" />
                         </CInputGroupText>
                       </CInputGroupPrepend>
-                      <CInput type="text" placeholder="Username" autoComplete="username" />
+                      <CInput type="text" name="email" placeholder="email" autoComplete="email" onChange={(e)=>this.handleChange(e)} />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
                       <CInputGroupPrepend>
@@ -45,11 +74,11 @@ const Login = () => {
                           <CIcon name="cil-lock-locked" />
                         </CInputGroupText>
                       </CInputGroupPrepend>
-                      <CInput type="password" placeholder="Password" autoComplete="current-password" />
+                      <CInput type="password" name="password" placeholder="Password" autoComplete="current-password" onChange={(e)=>this.handleChange(e)}/>
                     </CInputGroup>
                     <CRow>
                       <CCol xs="6">
-                        <CButton color="primary" className="px-4">Login</CButton>
+                        <CButton color="primary" className="px-4" onClick={(e)=>this.checkadmin(e)}>Login</CButton>
                       </CCol>
                       <CCol xs="6" className="text-right">
                         <CButton color="link" className="px-0">Forgot password?</CButton>
@@ -63,8 +92,9 @@ const Login = () => {
         </CRow>
       </CContainer>
     </div>
-    </div>
-  )
+      </div>
+    )
+  }
 }
 
-export default Login
+
