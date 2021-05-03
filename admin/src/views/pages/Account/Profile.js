@@ -3,6 +3,7 @@ import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import axios from "axios"
 import { Link } from 'react-router-dom'
+import Thheaders from '../../../containers/TheHeader'
 export default class Profile extends Component {
     constructor(props) {
         super(props)
@@ -20,6 +21,7 @@ export default class Profile extends Component {
             Oldpassword:"",
             confirmpassword:"",
             mypassword:"",
+            mycountry:"",
             errors:{}
         }
         
@@ -82,13 +84,10 @@ export default class Profile extends Component {
          errors.password = "password shoold Containe letters UperCase, LowerCase, Number and Special Caracter ";
       }        
     }
-    if(password!==mypassword && Oldpassword!==mypassword){
-        formIsValid = false;
-           errors.Oldpassword = "Oldpassword shoold equale to password ";
-    }else if(password!==mypassword && password!==confirmpassword){
+     if(password!==mypassword && password!==confirmpassword){
             formIsValid=false
             errors.confirmpassword = "Repeat password shoold Containe the Same like password "
-        }else if(password!==mypassword && Oldpassword.length && password===confirmpassword ){
+        }else if(password!==mypassword  && password===confirmpassword ){
             formIsValid = true;
         }
       if(country.length<0){
@@ -116,6 +115,7 @@ export default class Profile extends Component {
                    mypassword:res.data.password
                 })
             }
+           
         })
     }
     async contactSubmit(e){
@@ -174,21 +174,25 @@ export default class Profile extends Component {
         )
     }
     render() {
-        console.log(this.state.mypassword)
-        const { phone,errors ,image,imageselected } = this.state
+        const {Firstname,Lastname,errors,email,mycountry,country,Zip,imageselected,numberPhone,Address,image,phone}= this.state
         return (
+            <div>
+                <Thheaders />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="col-12 col-lg-10 col-xl-8 mx-auto">
                         <h2 className="h3 mb-4 page-title">Settings</h2>
                         <div className="my-4">
                             <ul className="nav nav-tabs mb-4" id="myTab" role="tablist">
-                                <li className="nav-item">
-                                    <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" ><Link to="/Seting">Profile</Link></a>
-                                </li>
 
                                 <li className="nav-item">
-                                    <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" >Update</a>
+                                    <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" >Profile</a>
                                 </li>
                             </ul>
                             <form>
@@ -209,8 +213,8 @@ export default class Profile extends Component {
                                     <div className="col">
                                         <div className="row align-items-center">
                                             <div className="col-md-7">
-                                                <h4 className="mb-1">Brown, Asher</h4>
-                                                <p className="small mb-3"><span className="badge badge-dark">New York, USA</span></p>
+                                                <h4 className="mb-1">{Firstname}, {Lastname}</h4>
+                                              
                                             </div>
                                         </div>
                                         <div className="row mb-4">
@@ -221,9 +225,10 @@ export default class Profile extends Component {
                                             </p>
                                             </div>
                                             <div className="col">
-                                                <p className="small mb-0 text-muted">Nec Urna Suscipit Ltd</p>
-                                                <p className="small mb-0 text-muted">P.O. Box 464, 5975 Eget Avenue</p>
-                                                <p className="small mb-0 text-muted">(537) 315-1481</p>
+                                            <p className="small mb-0 text-muted">{email}</p>
+                                                <p className="small mb-0 text-muted">{mycountry}</p>
+                                                <p className="small mb-0 text-muted">{Address}</p>
+                                                <p className="small mb-0 text-muted">{numberPhone}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -259,13 +264,6 @@ export default class Profile extends Component {
                                       type="text"
                                         onChange={ phone  => this.setState({phone })}
                                     />
-                                    </div>
-                                    <div className="form-group col-md-4">
-                                        <label htmlFor="inputState5">State</label>
-                                        <select id="inputState5" className="form-control">
-                                            <option value="">Choose...</option>
-                                            <option>...</option>
-                                        </select>
                                     </div>
                                     <div className="form-group col-md-2">
                                         <label htmlFor="inputZip5">Zip</label>
@@ -308,6 +306,7 @@ export default class Profile extends Component {
                     </div>
                 </div>
 
+            </div>
             </div>
         )
     }

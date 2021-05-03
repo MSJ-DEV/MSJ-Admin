@@ -15,7 +15,6 @@ const Register = React.lazy(() => import('./views/pages/register/Register'));
 const Post = React.lazy(() => import('./views/pages/Post/Post'));
 const Products = React.lazy(() => import('./views/pages/Products/Products'));
 const Profile = React.lazy(() => import('./views/pages/Account/Profile'));
-const Seting = React.lazy(() => import('./views/pages/Account/Seting'));
 class App extends Component {
 
   render() {
@@ -28,7 +27,6 @@ class App extends Component {
               <Route exact path="/Post" name="Post Page" render={props => <Post {...props}/>} />
               <Route exact path="/Products" name="Products Page" render={props => <Products {...props}/>} />
               <Route exact path="/Profile" name="Profile Page" render={props => <Profile {...props}/>} />
-              <Route exact path="/seting" name="seting Page" render={props => <Seting {...props}/>} />
               <Route path="/" name="Home" render={props => <TheLayout {...props}/>} />
             </Switch>
           </React.Suspense>
