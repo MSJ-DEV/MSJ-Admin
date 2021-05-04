@@ -7,7 +7,7 @@ export default class Product extends Component {
         super(props)
         this.state = {
             data: [],
-            i:10
+            i:11
         }
     }
     componentDidMount() {
@@ -51,7 +51,7 @@ export default class Product extends Component {
                                 <tr key={i}>
                                     <td className="clearfix">
                                         <div className="c-avatar">
-                                            <img src={e.image} className="c-avatar-img" />
+                                            <img src={e.image} className="c-avatar-img" alt="..."/>
                                             {/* <span className="c-avatar-status bg-success"></span> */}
                                         </div>
                                     </td>
@@ -117,3 +117,37 @@ export default class Product extends Component {
         )
     }
 }
+// const swalWithBootstrapButtons = Swal.mixin({
+//     customClass: {
+//       confirmButton: 'btn btn-success',
+//       cancelButton: 'btn btn-danger'
+//     },
+//     buttonsStyling: false
+//   })
+  
+//   swalWithBootstrapButtons.fire({
+//     title: 'Are you sure?',
+//     text: "You won't be able to revert this!",
+//     icon: 'warning',
+//     showCancelButton: true,
+//     confirmButtonText: 'Yes, delete it!',
+//     cancelButtonText: 'No, cancel!',
+//     reverseButtons: true
+//   }).then((result) => {
+//     if (result.isConfirmed) {
+//       swalWithBootstrapButtons.fire(
+//         'Deleted!',
+//         'Your file has been deleted.',
+//         'success'
+//       )
+//     } else if (
+//       /* Read more about handling dismissals below */
+//       result.dismiss === Swal.DismissReason.cancel
+//     ) {
+//       swalWithBootstrapButtons.fire(
+//         'Cancelled',
+//         'Your imaginary file is safe :)',
+//         'error'
+//       )
+//     }
+//   })

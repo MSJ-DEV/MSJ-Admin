@@ -7,8 +7,8 @@ import {
   CDropdownToggle,
   CImg
 } from '@coreui/react'
+import { Link } from 'react-router-dom'
 import CIcon from '@coreui/icons-react'
-
 const TheHeaderDropdown = () => {
   return (
     <CDropdown
@@ -63,7 +63,7 @@ const TheHeaderDropdown = () => {
           <strong>Settings</strong>
         </CDropdownItem>
         <CDropdownItem>
-          <CIcon name="cil-user" className="mfe-2" />Profile
+          <CIcon name="cil-user" className="mfe-2" /><Link to="/Profile">Profile</Link>
         </CDropdownItem>
         <CDropdownItem>
           <CIcon name="cil-settings" className="mfe-2" />
@@ -82,7 +82,7 @@ const TheHeaderDropdown = () => {
         <CDropdownItem divider />
         <CDropdownItem>
           <CIcon name="cil-lock-locked" className="mfe-2" />
-          Lock Account
+          Logout
         </CDropdownItem>
       </CDropdownMenu>
     </CDropdown>
