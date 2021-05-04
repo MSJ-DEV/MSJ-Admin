@@ -24,7 +24,8 @@ class Dashboard extends React.Component {
     super(props)
     this.state={
       data:[],
-      value:""
+      values:""
+    
     }
   }
   componentDidMount(){
@@ -36,11 +37,13 @@ class Dashboard extends React.Component {
     })
   }
   render() {
-    const {data}=this.state
+
+    const {data,values}=this.state
     return (
       <>
       <WidgetsDropdown />
       <CCard>
+       
         <CCardBody>
           <CRow>
             <CCol sm="5">
@@ -53,12 +56,14 @@ class Dashboard extends React.Component {
               </CButton>
               <CButtonGroup className="float-right mr-3">
                 {
-                  ['Day', 'Month', 'Year'].map(value => (
+                  ['Day', 'Month', 'Year'].map((value) => (
                     <CButton
                       color="outline-secondary"
                       key={value}
+                      onClick={()=>this.setState({values:value})}
                       className="mx-0"
-                      active={value === 'Day'}
+                  
+                      active={value ===values}
                     >
                       {value}
                     </CButton>
@@ -78,7 +83,7 @@ class Dashboard extends React.Component {
                 className="progress-xs mt-2"
                 precision={1}
                 color="success"
-                value={40}
+                value={100}
               />
             </CCol>
             <CCol md sm="12" className="mb-sm-2 mb-0 d-md-down-none">
@@ -88,7 +93,7 @@ class Dashboard extends React.Component {
                 className="progress-xs mt-2"
                 precision={1}
                 color="info"
-                value={40}
+                value={100}
               />
             </CCol>
             <CCol md sm="12" className="mb-sm-2 mb-0">
@@ -96,9 +101,9 @@ class Dashboard extends React.Component {
               <strong>78.706 Views (60%)</strong>
               <CProgress
                 className="progress-xs mt-2"
-                precision={1}
+                precision={5}
                 color="warning"
-                value={40}
+                value={100}
               />
             </CCol>
             <CCol md sm="12" className="mb-sm-2 mb-0">
@@ -106,9 +111,9 @@ class Dashboard extends React.Component {
               <strong>22.123 Users (80%)</strong>
               <CProgress
                 className="progress-xs mt-2"
-                precision={1}
+                precision={10}
                 color="danger"
-                value={40}
+                value={100}
               />
             </CCol>
             <CCol md sm="12" className="mb-sm-2 mb-0 d-md-down-none">
@@ -117,7 +122,7 @@ class Dashboard extends React.Component {
               <CProgress
                 className="progress-xs mt-2"
                 precision={1}
-                value={40}
+                value={100}
               />
             </CCol>
           </CRow>
@@ -319,13 +324,13 @@ class Dashboard extends React.Component {
                   <td>
                     <div className="clearfix">
                       <div className="float-left">
-                        <strong>50%</strong>
+                        <strong>90%</strong>
                       </div>
                       <div className="float-right">
                         <small className="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
                       </div>
                     </div>
-                    <CProgress className="progress-xs" color="success" value="50" />
+                    <CProgress className="progress-xs" color="success" value="90" />
                   </td>
                   <td className="text-center">
                     <CIcon height={25} name="cib-cc-mastercard" />

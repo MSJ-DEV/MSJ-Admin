@@ -14,15 +14,19 @@ import {
   CInputGroupText,
   CRow
 } from '@coreui/react'
+import Swal from 'sweetalert2'
 import CIcon from '@coreui/icons-react'
 import TheHeader from '../../../containers/TheHeader'
 import React, { Component } from 'react'
+axios.defaults.withCredentials = true
+axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*'
 export default class Login extends Component {
   constructor(props){
     super(props)
     this.state={
          email:"",
-         password:""
+         password:"",
+         alert:''
     }
   }
   handleChange(e) {
@@ -33,18 +37,42 @@ export default class Login extends Component {
 }
 checkadmin(e){
   const {password,email}=this.state
- axios.post('http://localhost:3333/api/admin',{
+ axios.post('http://localhost:3333/api/login',{
    email:email,
    password:password
    
- }).then(res=>{
+ },{withCredentials: true}).then(res=>{
    console.log(res)
+   if(res.data[1]==="secsuss"){
+     localStorage.setItem("id",res.data[2])
+    Swal.fire({
+      position: 'mid',
+      icon: 'success',
+      title: 'Your Login has been secced',
+      showConfirmButton: false,
+      timer: 1500
+    })
+    
+   }else {
+    Swal.fire({
+      position: 'mid',
+      icon: 'error',
+      title: 'Something went wrong! Check your password or Email',
+      showConfirmButton: false,
+      timer: 1500
+    })
+   }
  }).catch(err=>{
    console.log(err)
  })
 }
   render() {
- 
+    var alert = ''
+    if(this.state.alert == 'success'){
+        alert = <div className="alert alert-success" role="alert" >Sign In Successfully ...</div>
+    }else if(this.state.alert == "fail"){
+        alert = <div className="alert alert-danger" role="alert" > Wrong Password Or Username </div>
+    }
     return (
       <div>
            <TheHeader />
@@ -76,6 +104,7 @@ checkadmin(e){
                       </CInputGroupPrepend>
                       <CInput type="password" name="password" placeholder="Password" autoComplete="current-password" onChange={(e)=>this.handleChange(e)}/>
                     </CInputGroup>
+                   
                     <CRow>
                       <CCol xs="6">
                         <CButton color="primary" className="px-4" onClick={(e)=>this.checkadmin(e)}>Login</CButton>
@@ -84,6 +113,7 @@ checkadmin(e){
                         <CButton color="link" className="px-0">Forgot password?</CButton>
                       </CCol>
                     </CRow>
+                    {alert}
                   </CForm>
                 </CCardBody>
               </CCard>

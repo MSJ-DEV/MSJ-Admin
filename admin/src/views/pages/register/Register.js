@@ -1,4 +1,3 @@
-
 import {
   CButton,
   CCard,
@@ -26,8 +25,8 @@ export default class Register extends Component {
       email: "",
       password: "",
       repeatepassword: "",
-      country: "cif-" + "",
-      gender:"",
+      country: "cif-" + "Tn",
+      gender: "",
       errors: {}
     }
   }
@@ -88,7 +87,7 @@ export default class Register extends Component {
   }
 
   async contactSubmit(e) {
-    const {gender, username, email, password, repeatepassword, country, image, imageselected } = this.state
+    const { gender, username, email, password, repeatepassword, country, imageselected } = this.state
     e.preventDefault();
     if (this.handleValidation()) {
       const formData = new FormData()
@@ -103,9 +102,9 @@ export default class Register extends Component {
           repeatepassword: repeatepassword,
           image: res.data.url,
           country: country,
-          Zip:0,
-          gender:gender
-         
+          Zip: 0,
+          gender: gender
+
         }).then((res) => {
           console.log(res)
         })
@@ -173,6 +172,31 @@ export default class Register extends Component {
                         <CInput name="repeatepassword" type="password" placeholder="Repeat password" autoComplete="new-password" onChange={(e) => this.handleChange(e)} />
                         <span className="error">{this.state.errors["repeatepassword"]}</span>
                       </CInputGroup>
+                      <CInputGroup className="mb-4">
+                        <CInputGroupPrepend>
+                          <CInputGroupText>
+                            <CIcon name={this.state.country} />
+                          </CInputGroupText>
+                        </CInputGroupPrepend>
+                        <select className="selectsize" id="cars" onChange={(e) => this.setState({ country: "cif-" + e.target.value })} name="country">
+                          <option value="Select size">Select Country</option>
+                          {flag.map((e, i) =>
+                            <option key={i}>{e}</option>
+                          )}
+                        </select>
+                      </CInputGroup>
+                      <CInputGroup className="mb-4">
+                      <CInputGroupPrepend>
+                          <CInputGroupText>
+                            <CIcon name="cil-user"/>
+                          </CInputGroupText>
+                        </CInputGroupPrepend>
+                        <select className="selectsize" id="cars" onChange={(e) => this.setState({ gender: e.target.value })} name="gender">
+                          <option value="Select size">Choose...</option>
+                          <option >Male</option>
+                          <option >Female</option>
+                        </select>
+                      </CInputGroup>
                       <input type="file" accept="image/*" name="image-upload" id="input" onChange={(event) => this.setState({ imageselected: event.target.files[0] })} />
                       <div className="label">
                         <label className="image-upload" htmlFor="input">
@@ -180,29 +204,6 @@ export default class Register extends Component {
 						Choose your Photo
 					</label>
                       </div>
-                      <CInputGroup className="mb-4">
-                        <CInputGroupPrepend>
-                          <CInputGroupText>
-                            <CIcon name={this.state.country} />
-                          </CInputGroupText>
-                          {console.log(this.state)}
-                        </CInputGroupPrepend>
-                        <select className="selectsize" id="cars" onChange={(e) => this.setState({ country: "cif-" + e.target.value })} name="country">
-                          <option value="Select size">Select Country</option>
-                          {flag.map((e, i) =>
-                            <option key={i}>{e}</option>
-                          )}
-
-
-                        </select>
-                      </CInputGroup>
-                      <CInputGroup className="mb-4">
-                      <select className="selectsize" id="cars" onChange={(e) => this.setState({ gender:e.target.value })} name="gender">
-                          <option value="Select size">Choose...</option>
-                            <option >Male</option>
-                            <option >Female</option>
-                        </select>
-                        </CInputGroup>
                       <CButton color="success" onClick={(e) => this.contactSubmit(e)} >Create Account</CButton>
                     </CForm>
                   </CCardBody>
