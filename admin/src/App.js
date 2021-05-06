@@ -14,7 +14,8 @@ const Login = React.lazy(() => import('./views/pages/login/Login'));
 const Register = React.lazy(() => import('./views/pages/register/Register'));
 const Post = React.lazy(() => import('./views/pages/Post/Post'));
 const Products = React.lazy(() => import('./views/pages/Products/Products'));
-const Profile = React.lazy(() => import('./views/pages/Account/Profile'));
+const Profile = React.lazy(() => import('./views/pages/Account/Profile'))
+const Home = React.lazy(() => import('./containers/Home'));
 class App extends Component {
   constructor(props){
     super(props)
@@ -33,17 +34,25 @@ class App extends Component {
   }
 
   render() {
-    const {toggle}=this.state
-    return (
+    return true ? <HashRouter>
+    <React.Suspense fallback={loading}>
+      <Switch>
+        <Route exact path="/login" name="Login Page" render={props => <Login {...props}/>} />
+        <Route exact path="/register" name="Register Page" render={props => <Register {...props}/>} />
+        <Route path="/" name="Home" render={props => <TheLayout {...props}/>} />
+      </Switch>
+    </React.Suspense>
+</HashRouter> :(
       <HashRouter>
           <React.Suspense fallback={loading}>
             <Switch>
               <Route exact path="/login" name="Login Page" render={props => <Login {...props}/>} />
               <Route exact path="/register" name="Register Page" render={props => <Register {...props}/>} />
-            {toggle && <Route exact path="/Post" name="Post Page" render={props => <Post {...props}/>} />}
-             {toggle && <Route exact path="/Products" name="Products Page" render={props => <Products {...props}/>} />}
-             {toggle && <Route exact path="/Profile" name="Profile Page" render={props => <Profile {...props}/>} />}
-              {toggle &&<Route path="/" name="Home" render={props => <TheLayout {...props}/>} />}
+            <Route exact path="/Post" name="Post Page" render={props => <Post {...props}/>} />
+             <Route exact path="/Products" name="Products Page" render={props => <Products {...props}/>} />
+             <Route exact path="/Profile" name="Profile Page" render={props => <Profile {...props}/>} />
+             <Route path="/" name="Home" render={props => <Home {...props}/>} />
+           
             </Switch>
           </React.Suspense>
       </HashRouter>
