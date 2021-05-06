@@ -25,7 +25,7 @@ export default class Register extends Component {
       email: "",
       password: "",
       repeatepassword: "",
-      country: "cif-" + "Tn",
+      country: "cif-" + "",
       gender: "",
       errors: {}
     }
