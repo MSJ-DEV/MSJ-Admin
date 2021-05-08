@@ -11,8 +11,10 @@ export default class Product extends Component {
         }
     }
     componentDidMount() {
-        axios.get('http://localhost:3333/api/poducts').then((res) => {
+        console.log("***********************************************")
+        axios.get('http://192.168.1.15:3333/api/poducts').then((res) => {
             this.setState({ data: res.data })
+            console.log(res.data);
         })
     }
     render() {

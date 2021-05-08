@@ -34,15 +34,19 @@ class App extends Component {
   }
 
   render() {
-    return true ? <HashRouter>
-    <React.Suspense fallback={loading}>
-      <Switch>
-        <Route exact path="/login" name="Login Page" render={props => <Login {...props}/>} />
-        <Route exact path="/register" name="Register Page" render={props => <Register {...props}/>} />
-        <Route path="/" name="Home" render={props => <TheLayout {...props}/>} />
-      </Switch>
-    </React.Suspense>
-</HashRouter> :(
+    // return  <HashRouter>
+    // <React.Suspense fallback={loading}>
+    //   <Switch>
+    //     <Route exact path="/login" name="Login Page" render={props => <Login {...props}/>} />
+    //     <Route exact path="/register" name="Register Page" render={props => <Register {...props}/>} />
+    //     <Route path="/" name="Home" render={props => <TheLayout {...props}/>} />
+    //     <Route exact path="/Products" name="Products Page" render={props => <Products {...props}/>} />
+
+    //   </Switch>
+    // </React.Suspense>
+    // </HashRouter> 
+    return(
+
       <HashRouter>
           <React.Suspense fallback={loading}>
             <Switch>

@@ -31,9 +31,7 @@ export default class Login extends Component {
   }
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value })
-    console.log(
-        this.state
-    )
+  
 }
 checkadmin(e){
   const {password,email}=this.state
@@ -41,7 +39,9 @@ checkadmin(e){
    email:email,
    password:password
    
- },{withCredentials: true}).then(res=>{
+ },{withCredentials: true, headers:{"Access-Control-Allow-Origin":"*"
+ }
+ }).then(res=>{
    console.log(res)
    if(res.data[1]==="secsuss"){
      localStorage.setItem("id",res.data[2])
